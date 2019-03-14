@@ -1,0 +1,46 @@
+
+//write  a user model that contains a name, an email, and a password 
+//write validations athat make sure the fields are not empty and inclue a special validation for email
+ //write a hook that hashes the password before the instance is created, using the given hash function 
+//write a getter method that causes the email to be returned as a lower case string
+
+
+
+//write a tweet model that contains content, favorites, and retweets
+//make sure the content can't be null and give the other two a default value 
+
+
+const User = db.define({
+    name: {
+        type: Sequelize.STRING,
+        notEmpty: true
+    },
+    email: {
+        type: Sequelize.STRING  
+        validate: {
+            isEmail: true
+            notEmpty: true
+        },
+        allowNull: false
+    },
+    password: {
+        type: Sequlize.STRING,
+        allowNull: false
+    },
+    get() {
+        return this.getDataValue('name').toLowerCase();
+    },
+    hooks: {
+        beforeCreate: (user, options) => {
+            user.password = hash(user.password)
+        }
+    }
+})
+
+//set up association????
+
+User.beforeCreate((instance, optionsObj) => {
+    isntance.password = hash(instance.password);
+    user.password = hashedPassword;
+})
+

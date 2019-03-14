@@ -9,7 +9,7 @@ const Promise = require('bluebird');
 
 describe('Models', function() {
   before(function() {
-    return db.sync({ force: true });
+   // return db.sync({ force: true });
   });
 
   describe('The `Students` model', function() {
